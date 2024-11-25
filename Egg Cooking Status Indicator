@@ -1,0 +1,72 @@
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+#define ONE_WIRE_BUS 2        // DS18B20 data pin connected to D2
+#define RED_LED_PIN 8         // Red LED control pin
+#define YELLOW_LED_PIN 9      // Yellow LED control pin
+#define GREEN_LED_PIN 10      // Green LED control pin
+#define BUZZER_PIN 11         // Buzzer pin
+
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature sensors(&oneWire);
+
+const float targetTemp = 90.0;        // Target water temperature
+const unsigned long requiredTime = 600000; // Countdown time (10 minutes)
+unsigned long startTime = 0;
+bool cookingStarted = false;
+bool buzzerActivated = false;         // Flag: whether the buzzer is activated
+
+void setup() {
+  pinMode(RED_LED_PIN, OUTPUT);
+  pinMode(YELLOW_LED_PIN, OUTPUT);
+  pinMode(GREEN_LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+  Serial.begin(9600);
+  sensors.begin();
+}
+
+void loop() {
+  sensors.requestTemperatures();
+  float tempC = sensors.getTempCByIndex(0);
+  Serial.print("Temperature: ");
+  Serial.print(tempC);
+  Serial.println(" C");
+
+  if (tempC < targetTemp) {
+    // When water temperature is below target, turn on red LED
+    digitalWrite(RED_LED_PIN, HIGH);
+    digitalWrite(YELLOW_LED_PIN, LOW);
+    digitalWrite(GREEN_LED_PIN, LOW);
+    noTone(BUZZER_PIN);        // Stop buzzer sound
+    cookingStarted = false;    // Reset countdown
+    buzzerActivated = false;   // Reset buzzer state
+  } 
+  else {
+    if (!cookingStarted) {
+      // When target temperature is reached, turn on yellow LED and start countdown
+      startTime = millis();
+      cookingStarted = true;
+    }
+
+    if (millis() - startTime < requiredTime) {
+      // During countdown, turn on yellow LED
+      digitalWrite(RED_LED_PIN, LOW);
+      digitalWrite(YELLOW_LED_PIN, HIGH);
+      digitalWrite(GREEN_LED_PIN, LOW);
+    } 
+    else {
+      // After countdown ends, turn on green LED and activate buzzer
+      digitalWrite(RED_LED_PIN, LOW);
+      digitalWrite(YELLOW_LED_PIN, LOW);
+      digitalWrite(GREEN_LED_PIN, HIGH);
+
+      if (!buzzerActivated) {
+        tone(BUZZER_PIN, 1000); // Make buzzer sound at 1kHz
+        buzzerActivated = true; 
+        Serial.println("Egg is Cooked! Buzzer Activated.");
+      }
+    }
+  }
+
+  delay(1000);  // Check temperature every second
+}
