@@ -20,7 +20,8 @@ This project is a simple Arduino-based system designed to monitor the water temp
 2. **Waterproof DS18B20 Temperature Sensor**: Measures the water temperature accurately.  
 3. **Red, Yellow, and Green LEDs**: Display cooking status.  
 4. **Buzzer**: Sounds when cooking is complete.  
-5. **4.7kΩ Resistor**: Required pull-up resistor for DS18B20's data line.  
+5. **4.7kΩ Resistor**: Required pull-up resistor for DS18B20's data line.
+6. **Resistance (220Ω) x 3**: Limits the current of each LED to prevent overcurrent.
 
 ---
 
