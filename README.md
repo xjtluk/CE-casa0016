@@ -62,6 +62,7 @@ The Arduino sketch reads the water temperature, determines the cooking status, a
 
 ## Experimental demonstration
 ![Video](./Doc/video.mp4)
+Due to the size of the video, it cannot be viewed directly on the web page. But you can download it.
 
 ---
 
