@@ -1,5 +1,5 @@
 # Egg Cooking Status Indicator  
-
+![Circuit1](./Doc/pic.png)  
 ## Description  
 This project is a simple Arduino-based system designed to monitor the water temperature while boiling eggs and provide clear visual and auditory feedback on the cooking process. Using a DS18B20 waterproof temperature sensor, the system lights up LEDs and activates a buzzer to indicate the cooking status.  
 
