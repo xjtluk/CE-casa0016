@@ -60,6 +60,11 @@ The Arduino sketch reads the water temperature, determines the cooking status, a
 
 ---
 
+## Experimental demonstration
+![Video](./Doc/video.mp4)
+
+---
+
 ## Customization  
 - Adjust the `targetTemp` (default: 90.0°C) for different cooking requirements.  
 - Change `requiredTime` (default: 10 minutes) based on recipe needs.  
