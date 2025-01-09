@@ -44,7 +44,7 @@ The Arduino sketch reads the water temperature, determines the cooking status, a
 
 ## How to Use  
 1. Connect the components following the provided circuit diagram.  
-2. Upload the Arduino sketch (`EggCookingMonitor.ino`) to the Arduino Uno.  
+2. Upload the Arduino sketch (`EggCookingMonitor.ino`) to the Arduino Uno and install the 'OneWire' and 'DallasTemperature' libraries.  
 3. Place the DS18B20 sensor in the water and power the Arduino.  
 4. Observe the LEDs and buzzer for real-time feedback on the cooking status.  
 
