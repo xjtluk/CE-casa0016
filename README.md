@@ -51,7 +51,10 @@ The Arduino sketch reads the water temperature, determines the cooking status, a
 ---
 
 ## Circuit Diagram  
-![Circuit1](./Doc/Circuit1.png)  
+ 
+<img src="https://github.com/xjtluk/CE-casa0016/raw/main/Doc/Circuit1.png" alt="描述" width="300"/>
+
+<img src="https://github.com/xjtluk/CE-casa0016/raw/main/Doc/pic2.jpg" alt="描述" width="300"/>
 
 1. Connect the DS18B20 data line to Arduino pin D2, with a 4.7kΩ pull-up resistor between the data line and VCC.  
 2. Connect the LEDs to pins 8, 9, and 10 with appropriate resistors.  
